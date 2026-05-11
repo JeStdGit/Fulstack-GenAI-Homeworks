@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            color: cornflowerblue;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p class="bold">Location Precedence</p>
+    <h1 style="color: dodgerblue;" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, soluta?</h1>
+    <p>The inline style declaration wins because it's the last line compiled by the browser compiler (overrides the both previous declarations - internal and external)</p>
+    <p class="bold">Selector Specificity</p>
+    <h2 class="headline" id="hdl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, consequatur?</h2>
+    <p>The ID selector wins (marked with hashtag - '#') because it has Selector Specificity of 1, 0, 0 unlike class selector that has specificity of 0, 1, 0 and tag selector with specificity of 0, 0, 1 - both are lower then Id Selector specificity (1, 0, 0)</p>
+</body>
+</html>
