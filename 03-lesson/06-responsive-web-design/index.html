@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body,
+        div {
+            height: 100%;
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        main {
+            background-color: aqua;
+            width: 70%;
+        }
+
+        aside {
+            background-color: aquamarine;
+            width: 30%;
+        }
+
+        @media screen and (min-width:768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            main {
+                width: 100%;
+                height: 70%;
+            }
+
+            aside {
+                width: 100%;
+                height: 30%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <main>Main content</main>
+        <aside>Aside Content</aside>
+    </div>
+</body>
+
+</html>
