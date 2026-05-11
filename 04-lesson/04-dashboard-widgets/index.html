@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .grid-item {
+            background-color: azure;
+            color: cadetblue;
+            text-shadow: 2px 2px 5px gainsboro;
+            border-radius: 20px;
+            box-shadow: -2px 2px 3px gainsboro;
+            padding: 10px;
+        }
+
+        .grid-item:hover {
+            box-shadow: -2px 2px 10px gainsboro;
+            cursor: pointer;
+        }
+
+        .first-item {
+            display: grid;
+            place-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="grid-item first-item">
+            <h1>There's no new messages</h1>
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+    </div>
+</body>
+</html>
