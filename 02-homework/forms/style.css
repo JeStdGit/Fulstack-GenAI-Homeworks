@@ -1,0 +1,90 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    color: steelblue;
+}
+
+.root-div {
+    color: steelblue;
+    background-color: aliceblue;
+    border-radius: 25px;
+    box-shadow: 0em 0em 0.3em;
+    width: 70%;
+    max-width: 300px;
+    padding: 20px;
+    margin: 0px 15px 15px 15px;
+}
+
+label {
+    display: block;
+    margin: 0.2rem 0.2rem 0.3rem 0.5rem;
+    font-size: x-small;
+    cursor: pointer;
+}
+
+.inline-label {
+    display: inline;
+    width: initial;
+    font-size: 13px;
+    font-weight: lighter;
+    margin: 0rem;
+}
+
+input,
+textarea,
+select {
+    width: 90%;
+    max-width: 300px;
+    border-radius: 20px;
+    padding: 5px 10px;
+    border: solid 1px steelblue;
+    color: steelblue;
+}
+
+select {
+    box-sizing: content-box;
+}
+
+select option {
+    border-radius: 20px;
+    border: solid 1px steelblue;
+}
+
+.form-group {
+    margin: 1rem 0.75rem;
+}
+
+#radio-male,
+#radio-female {
+    width: initial;
+}
+
+button {
+    color: steelblue;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: solid 1px steelblue;
+    box-shadow: 0em 0em 0.15em;
+    margin-right: 5px;
+}
+
+button:active {
+    box-shadow: 0em 0em 0.0em;
+}
+
+button:hover,
+button:focus {
+    background-color: aliceblue;
+}
+
+*:focus {
+    outline: solid steelblue 1.5px;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Register new User</h1>
+    <div class="root-div">
+        <form action="https://api.web3forms.com/submit" method="post">
+            <input type="hidden" name="access_key" value="a112e5e2-4e98-485c-ac7c-f8155f2b962b">
+        
+            <div class="form-group">
+                <label for="first-name-input">First Name</label>
+                <input id="first-name-input" name="First Name" type="text" placeholder="Enter your first name">
+            </div>
+            <div class="form-group">
+                <label for="last-name-input">Last Name</label>
+                <input id="last-name-input" name="Last Name" type="text" placeholder="Enter your last name">
+            </div>
+            <div class="form-group">
+                <label for="age-input">Age</label>
+                <input id="age-input" name="Age" type="number" placeholder="Enter your Age" min="18">
+            </div>
+            <div class="form-group">
+                <label for="email-input">Email</label>
+                <input id="email-input" name="Email" type="email" placeholder="Enter your Email" required>
+            </div>
+            <div class="form-group">
+                <label for="password-input">Password</label>
+                <input id="password-input" type="password" placeholder="Enter your Password" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile-input">Mobile</label>
+                <input id="mobile-input" name="Mobile" type="tel" placeholder="Enter your Mobile" pattern="[0-9]{3}-[0-9]{7}">
+            </div>
+            <div class="form-group">
+                <label for="birthdate-input">Birthdate</label>
+                <input id="birthdate-input" name="Birthdate" type="date">
+            </div>
+            <div class="form-group">
+                <label for=""></label>
+            </div>
+            <div class="form-group">
+                <label for="radio-male">Gender</label>
+                <input type="radio" id="radio-male" name="Gender" value="Male">
+                <label class="inline-label" for="radio-male">Male</label>
+                <input type="radio" id="radio-female" name="Gender" value="Female">
+                <label class="inline-label" for="radio-female">Female</label>
+            </div>
+            <div class="form-group">
+                <label for="prof-dropdown">Proffesions</label>
+                <select name="Proffesions" id="prof-dropdown">
+                    <optgroup label="Frontend">
+                        <option value="front-html">Html</option>
+                        <option value="front-css">Css</option>
+                    </optgroup>
+                    <optgroup label="Backend">
+                        <option value="back-js">JavaScript</option>
+                        <option value="back-python">Python</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="note-area">Note</label>
+                <textarea id="note-area" name="Note" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Register</button>
+                <button type="reset">Clear</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

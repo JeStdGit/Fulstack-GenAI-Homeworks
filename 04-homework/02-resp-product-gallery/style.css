@@ -1,0 +1,53 @@
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    gap: 25px;
+}
+
+.product-item {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 120px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(240, 248, 255, 0.5);
+    box-shadow: 0px 0px 3px gainsboro;
+    border: 1px solid gainsboro;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.product-item:hover {
+    box-shadow: 0px 0px 10px gainsboro;
+    background-color: aliceblue;
+}
+
+.product-item:active {
+    box-shadow: 0px 0px 3px gainsboro;
+    transform: translateY(-0.5px);
+}
+
+.title {
+    font-size: large;
+}
+
+.placeholder {
+    height: 5rem;
+}
+
+@media screen and (max-width: 360px) {
+    .products-container {
+        flex-direction: column;
+    }
+
+    .product-item {
+        flex-basis: initial;
+        flex-direction: row;   
+        justify-content: start;
+        padding: 10px;
+        gap: 10px;
+    }
+}

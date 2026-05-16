@@ -1,0 +1,19 @@
+h1 {
+    color: cadetblue;
+}
+
+h2 {
+    color: dodgerblue;
+}
+
+.headline {
+    color: cornflowerblue;
+}
+
+#hdl {
+    color: cadetblue;
+}
+
+.bold {
+    font-weight: bold;
+}
