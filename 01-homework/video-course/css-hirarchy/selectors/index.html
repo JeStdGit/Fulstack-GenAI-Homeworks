@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p { /* element */
+            background-color: bisque;
+        }
+
+        .background { /* .class */
+            background-color: rgb(253, 247, 238);
+        }
+
+        .big-text { /* .class */
+            font-size: 20px;
+        }
+
+        .bold { /* .class */
+            font-weight: bold;
+        }
+
+        .highlight { /* .class */
+            background-color: aqua;
+        }
+        
+        #execluded { /* #id */
+            background-color: rgb(253, 247, 238);
+        }
+
+        /* -- hirarchy --
+        
+        "id"      - 1st priority (#)
+        "class"   - 2nd priority (.)
+        "element" - 3rd priority (element tag name)
+
+        */
+
+    </style>
+</head>
+<body class="background">
+    <p>Lorem ipsum dolor sit amet. 1</p>
+    <p class="big-text">Lorem ipsum dolor sit amet. 2</p>
+    <p class="highlight" id="execluded">Lorem ipsum dolor sit amet. 3</p>
+    <div class="highlight bold">Lorem ipsum dolor sit amet. (div)</div>
+</body>
+</html>
