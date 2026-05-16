@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        header {
+            height: 20vh;
+            width: 100vw;
+            background-color: aliceblue;
+        }
+
+        .container {
+            width: 50%;
+            background-color: aquamarine;
+        }
+
+        h1 {
+            width: 2rem;
+            height: 2rem;
+            background-color: aqua;
+        }
+        
+        .div-with-span {
+            font-size: 20px;
+        }
+
+        span {
+            font-size: 2em;
+        }
+
+        p {
+            color: darkcyan;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>Header</header>
+    <div class="container">container (50% wide)</div>
+    <h1>H1</h1>
+    <p>The H1 size is 32px*32px - the root element font-size (html - 16px) multiplied by 2 (2rem)</p>
+    <div class="div-with-span">Lorem ipsum dolor <span>span text</span></div>
+    <p>The span font-size is 40px - his parent div font-size (20px) multiplied by 2 (2em)</p>
+</body>
+</html>
