@@ -42,7 +42,7 @@ function processQueue(queue, logs) {
         if (isApprovedRequest) {
             // [4. Payload Normalization]
             for (const key in request.payload) {
-                if (!request.payload[key]) request.payload[key] = "MISSING_DATA"
+                if (request.payload[key] === undefined || request.payload[key] === null) request.payload[key] = "MISSING_DATA"
             }
 
             // [5. Request Routing]
