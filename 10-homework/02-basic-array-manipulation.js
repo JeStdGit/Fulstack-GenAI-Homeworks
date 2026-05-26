@@ -6,8 +6,8 @@ console.log(tasks);
 tasks.unshift('buy groceries')
 console.log(tasks);
 
-const removedFromStart = tasks.shift()
-console.log(tasks, "removed:", removedFromStart);
+const skippedTask = tasks.shift()
+console.log(tasks, "removed:", skippedTask);
 
-const removedFromEnd = tasks.pop()
-console.log(tasks, "removed:", removedFromEnd);
+const completedTask = tasks.pop()
+console.log(tasks, "removed:", completedTask);
