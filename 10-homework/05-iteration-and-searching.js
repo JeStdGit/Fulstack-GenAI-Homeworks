@@ -1,7 +1,7 @@
 const students = [{ name: 'John', passed: true }, { name: 'Jane', passed: false }]
 
 students.forEach(
-    student => console.log("John's record has been reviewed.")
+    student => console.log(`${student.name}'s record has been reviewed.`)
 )
 
 let scores = [45, 65, 88, 92, 55]
