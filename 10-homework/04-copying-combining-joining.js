@@ -1,6 +1,7 @@
 let original = [1, 2, 3]
 
-let copy = original.copyWithin()
+let copy1 = original.slice()
+let copy2 = [...original]
 
 let group1 = ['Alice', 'Bob']
 let group2 = ['Charlie', 'Dave']
