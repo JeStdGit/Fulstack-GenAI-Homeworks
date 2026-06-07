@@ -2,11 +2,10 @@ const matrix = []
 for (let index = 0; index < 10; index++) {
     matrix.push(new Array(10))
     for (let subIndex = 0; subIndex < matrix[index].length; subIndex++) {
-        let y = index
-        let x = subIndex
-        if (y > 4) y = 9 - y
-        if (x > 4) x = 9 - x
-        matrix[index][subIndex] = Math.min(y, x)
+        let x = (index > 4) ? 9 - index : index
+        let y = (subIndex > 4) ? 9 - subIndex : subIndex
+
+        matrix[index][subIndex] = Math.min(x, y)
     }
 }
 console.table(matrix);
