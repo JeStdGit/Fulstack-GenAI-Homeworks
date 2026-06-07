@@ -2,10 +2,28 @@ const matrix = []
 for (let index = 0; index < 10; index++) {
     matrix.push(new Array(10))
     for (let subIndex = 0; subIndex < matrix[index].length; subIndex++) {
-        // TODO: fix logic
-        if (index === 0 || index === 9) {
-            matrix[index][subIndex] = index
-        } else matrix[index][subIndex] = subIndex
+        let y = index
+        let x = subIndex
+        if (y > 4) y = 9 - y
+        if (x > 4) x = 9 - x
+        matrix[index][subIndex] = Math.min(y, x)
     }
 }
-console.log(matrix);
+console.table(matrix);
+
+/*
+┌─────────┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
+│ (index) │ 0 │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │
+├─────────┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
+│ 0       │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │
+│ 1       │ 0 │ 1 │ 1 │ 1 │ 1 │ 1 │ 1 │ 1 │ 1 │ 0 │
+│ 2       │ 0 │ 1 │ 2 │ 2 │ 2 │ 2 │ 2 │ 2 │ 1 │ 0 │
+│ 3       │ 0 │ 1 │ 2 │ 3 │ 3 │ 3 │ 3 │ 2 │ 1 │ 0 │
+│ 4       │ 0 │ 1 │ 2 │ 3 │ 4 │ 4 │ 3 │ 2 │ 1 │ 0 │
+│ 5       │ 0 │ 1 │ 2 │ 3 │ 4 │ 4 │ 3 │ 2 │ 1 │ 0 │
+│ 6       │ 0 │ 1 │ 2 │ 3 │ 3 │ 3 │ 3 │ 2 │ 1 │ 0 │
+│ 7       │ 0 │ 1 │ 2 │ 2 │ 2 │ 2 │ 2 │ 2 │ 1 │ 0 │
+│ 8       │ 0 │ 1 │ 1 │ 1 │ 1 │ 1 │ 1 │ 1 │ 1 │ 0 │
+│ 9       │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │
+└─────────┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘ 
+*/
