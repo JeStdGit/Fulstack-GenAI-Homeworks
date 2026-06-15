@@ -1,0 +1,13 @@
+Thinking Questions
+
+1. Why do we use Object.create(Parent.prototype) instead of Child.prototype = Parent.prototype directly?
+answer: i'ts a legacy method regarding to a completly another subject from what we learnd in the previous lesson (classes - using the class, extends, super keywords...) probably accidetly pushed by the homework geneartor AI agent but we didn't talk about it in the class.
+
+2. Why must we reset Child.prototype.constructor = Child after setting up inheritance?
+answer: same as the 1st question.
+
+3. In Exercise 2, receipt() calls this.pay(amount) — when the object is a PayPal instance, which version of pay() runs? Why?
+answer: the PayPal version. because PayPal's pay() method overrides the parent pay() method
+
+4. What is the difference between inheritance and polymorphism?
+answer: in inheritance each class inherits the parent method as is without changing it becouse it has an universal method that acts the same for any of it's childs, in polymorphism the parent method is there in order to set a standart for any of it's childs so they couldn't implement without having these methods this forces the same pattern for every class that inherits from this 'parent' class
