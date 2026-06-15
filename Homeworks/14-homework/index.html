@@ -12,6 +12,8 @@
     <h2 id="subtitle"></h2>
 
     <script>
+        // - Part 1 — The Document Object (intro) -
+
         document.title = "Jacob Elcharar"
         const firstScript = document.body.getElementsByTagName('script')[0]
         console.dir(firstScript.src || firstScript.tagName);
@@ -21,6 +23,8 @@
         }
 
         introduce("Hi there", document.title)
+
+        // - Part 2 — getElementById -
 
         const title = document.getElementById('title')
         console.log(title);
