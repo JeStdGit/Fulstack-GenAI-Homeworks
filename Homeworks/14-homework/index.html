@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="title">JavaScript is awesome<span style="display:none;"> — hidden text</span></h1>
+    <h2 id="subtitle"></h2>
+
+    <ul>
+        <li class="item">HTML</li>
+        <li class="item">CSS</li>
+        <li class="item">JavaScript</li>
+        <li class="item">React</li>
+    </ul>
+
+    <form>
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username">
+        </div>
+        <input type="button" value="Submit" id="submit-btn">
+    </form>
+
+    <script>
+        // - Part 1 — The Document Object (intro) -
+
+        document.title = "Jacob Elcharar"
+        const firstScript = document.body.getElementsByTagName('script')[0]
+        console.dir(firstScript.src || firstScript.tagName);
+
+        function introduce(greeting, name) {
+            console.log(`${greeting} ${name}`);
+        }
+
+        introduce("Hi there", document.title)
+
+        // - Part 2 — getElementById -
+
+        const title = document.getElementById('title')
+        console.log(title);
+
+        const subTitle = document.getElementById('subtitle')
+        subTitle.innerText = title.innerText
+        console.log(subTitle.innerText);
+
+        /* the innerText gives only the text that appears to the user on the screen
+           therfore the ' - hidden text' inside the span sets to 'displpay:none'
+           wouldn't pass into the `subTitle.innertext` */
+
+        subTitle.innerHTML = title.innerHTML
+        console.log(subTitle.innerHTML) // innerHTML gives the whole title inner-content
+
+        subTitle.textContent = title.textContent
+        console.log(subTitle.textContent);
+
+        subTitle.style.background = 'lightblue'
+        subTitle.style.borderLeft = '4px solid orange'
+
+        // - Part 3 — getElementsByClassName & getElementsByTagName -
+
+        let listItems = document.getElementsByClassName('item')
+        console.log(`listItems: ${listItems}, items count: ${listItems.length}`); // it's an array with 4 items
+
+        for (let i = 0; i < listItems.length; i++) {
+            if (i === 1) listItems[i].style.border = '2px solid gray'
+            listItems[i].style.color = 'darkblue'
+        }
+
+        listItems[listItems.length - 1].innerHTML = '<a href="https://react.dev" target="_blank">React Docs</a>'
+
+        listItems = document.getElementsByTagName('li')
+        for (const item of listItems) {
+            item.style.backgroundColor = 'lightyellow'
+        }
+
+        // - Part 4 — Event Object & addEventListener -
+
+        const submitButton = document.getElementById('submit-btn')
+        const userNameInput = document.getElementById('username')
+
+        function handleClick() {
+            console.log(`Hello, ${userNameInput.value}!`);
+        }
+
+        submitButton.addEventListener('click', () => handleClick())
+        // 'click' runs the function parameter when clicking the button and 'mouseenter does the same when the mouse enters to the button area'
+
+        submitButton.addEventListener('mouseleave', () => submitButton.style.backgroundColor = 'coral')
+    </script>
+</body>
+
+</html>
