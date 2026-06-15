@@ -18,6 +18,14 @@
         <li class="item">React</li>
     </ul>
 
+    <form>
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username">
+        </div>
+        <input type="button" value="Submit" id="submit-btn">
+    </form>
+
     <script>
         // - Part 1 — The Document Object (intro) -
 
@@ -69,6 +77,20 @@
         for (const item of listItems) {
             item.style.backgroundColor = 'lightyellow'
         }
+
+        // - Part 4 — Event Object & addEventListener -
+
+        const submitButton = document.getElementById('submit-btn')
+        const userNameInput = document.getElementById('username')
+
+        function handleClick() {
+            console.log(`Hello, ${userNameInput.value}!`);
+        }
+
+        submitButton.addEventListener('click', () => handleClick())
+        // 'click' runs the function parameter when clicking the button and 'mouseenter does the same when the mouse enters to the button area'
+
+        submitButton.addEventListener('mouseleave', () => submitButton.style.backgroundColor = 'coral')
     </script>
 </body>
 
