@@ -8,6 +8,8 @@
 </head>
 
 <body>
+    <h1 id="title">JavaScript is awesome<span style="display:none;"> — hidden text</span></h1>
+    <h2 id="subtitle"></h2>
 
     <script>
         document.title = "Jacob Elcharar"
@@ -19,6 +21,26 @@
         }
 
         introduce("Hi there", document.title)
+
+        const title = document.getElementById('title')
+        console.log(title);
+
+        const subTitle = document.getElementById('subtitle')
+        subTitle.innerText = title.innerText
+        console.log(subTitle.innerText);
+
+        /* the innerText gives only the text that appears to the user on the screen
+           therfore the ' - hidden text' inside the span sets to 'displpay:none'
+           wouldn't pass into the `subTitle.innertext` */
+
+        subTitle.innerHTML = title.innerHTML
+        console.log(subTitle.innerHTML) // innerHTML gives the whole title inner-content
+
+        subTitle.textContent = title.textContent
+        console.log(subTitle.textContent);
+
+        subTitle.style.background = 'lightblue'
+        subTitle.style.borderLeft = '4px solid orange'
     </script>
 </body>
 
