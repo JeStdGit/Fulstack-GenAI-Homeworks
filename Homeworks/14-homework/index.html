@@ -11,6 +11,13 @@
     <h1 id="title">JavaScript is awesome<span style="display:none;"> — hidden text</span></h1>
     <h2 id="subtitle"></h2>
 
+    <ul>
+        <li class="item">HTML</li>
+        <li class="item">CSS</li>
+        <li class="item">JavaScript</li>
+        <li class="item">React</li>
+    </ul>
+
     <script>
         // - Part 1 — The Document Object (intro) -
 
@@ -45,6 +52,23 @@
 
         subTitle.style.background = 'lightblue'
         subTitle.style.borderLeft = '4px solid orange'
+
+        // - Part 3 — getElementsByClassName & getElementsByTagName -
+
+        let listItems = document.getElementsByClassName('item')
+        console.log(`listItems: ${listItems}, items count: ${listItems.length}`); // it's an array with 4 items
+
+        for (let i = 0; i < listItems.length; i++) {
+            if (i === 1) listItems[i].style.border = '2px solid gray'
+            listItems[i].style.color = 'darkblue'
+        }
+
+        listItems[listItems.length - 1].innerHTML = '<a href="https://react.dev" target="_blank">React Docs</a>'
+
+        listItems = document.getElementsByTagName('li')
+        for (const item of listItems) {
+            item.style.backgroundColor = 'lightyellow'
+        }
     </script>
 </body>
 
