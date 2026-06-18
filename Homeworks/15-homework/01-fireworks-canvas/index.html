@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        #canvas {
+            position: relative;
+            width: 85vw;
+            height: 85vh;
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .particle,
+        .spark {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .particle {
+            width: 8px;
+            height: 8px;
+            transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+        }
+
+        .spark {
+            width: 5px;
+            height: 5px;
+            background-color: gold;
+            transition: opacity 0.6s ease-out;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="canvas"></div>
+
+    <script>
+        // Explosion dots
+        const canvas = document.getElementById('canvas')
+        let lastMouseX = 0;
+        let lastMouseY = 0;
+        let mouseSpeed = 0;
+
+        canvas.addEventListener("click", function (e) {
+
+            const scaleFactor = Math.min(Math.max(mouseSpeed / 10, 1), 3);
+
+            for (let i = 0; i < 20; i++) {
+                const dot = document.createElement("div");
+                dot.classList.add("particle");
+                dot.style.left = e.offsetX + "px";
+                dot.style.top = e.offsetY + "px";
+                dot.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 60%)`;
+                canvas.appendChild(dot);
+
+                const angle = Math.random() * 2 * Math.PI;
+                const distance = (40 + Math.random() * 80) * scaleFactor;
+                const dx = Math.cos(angle) * distance;
+                const dy = Math.sin(angle) * distance;
+
+                // Trigger the animation after the element is painted
+                setTimeout(() => {
+                    dot.style.transform = `translate(${dx}px, ${dy}px)`;
+                    dot.style.opacity = "0";
+                }, i * 10);
+
+                setTimeout(() => dot.remove(), 700);
+            }
+        });
+
+        // Sparkle trail
+        canvas.addEventListener("mousemove", function (e) {
+            const movementX = e.clientX - lastMouseX;
+            const movementY = e.clientY - lastMouseY;
+            mouseSpeed = Math.sqrt(movementX * movementX + movementY * movementY);
+
+            const spark = document.createElement("div");
+            spark.classList.add("spark");
+            spark.style.left = e.offsetX + "px";
+            spark.style.top = e.offsetY + "px";
+            canvas.appendChild(spark);
+
+            setTimeout(() => {
+                spark.style.opacity = "0";
+            }, 50);
+
+            setTimeout(() => spark.remove(), 650);
+        });
+
+        // Clear on Escape
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") {
+                canvas.innerHTML = "";
+            }
+        });
+    </script>
+</body>
+
+</html>
