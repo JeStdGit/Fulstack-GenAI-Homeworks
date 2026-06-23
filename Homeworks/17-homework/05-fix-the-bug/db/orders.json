@@ -1,0 +1,117 @@
+[
+  {
+    "orderId": "ORD-2026-8941",
+    "customerId": "CUST-4501",
+    "orderDate": "2026-06-22T14:32:00Z",
+    "status": "shipped",
+    "currency": "USD",
+    "pricing": {
+      "subtotal": 149.98,
+      "tax": 12.00,
+      "shipping": 0.00,
+      "discount": 15.00,
+      "total": 146.98
+    },
+    "items": [
+      {
+        "productId": "PROD-102",
+        "name": "Wireless Ergonomic Keyboard",
+        "sku": "KB-ERGO-W",
+        "quantity": 1,
+        "unitPrice": 89.99
+      },
+      {
+        "productId": "PROD-205",
+        "name": "Rechargeable Multi-Device Mouse",
+        "sku": "MS-MULTI-R",
+        "quantity": 1,
+        "unitPrice": 59.99
+      }
+    ],
+    "shippingAddress": {
+      "fullName": "Jane Doe",
+      "street": "123 Innovation Way",
+      "city": "Austin",
+      "state": "TX",
+      "postalCode": "78701",
+      "country": "US"
+    },
+    "payment": {
+      "method": "credit_card",
+      "provider": "Stripe",
+      "transactionId": "ch_3Mv8X1LkdIwMw7ix2"
+    }
+  },
+  {
+    "orderId": "ORD-2026-8942",
+    "customerId": "CUST-1102",
+    "orderDate": "2026-06-23T09:15:00Z",
+    "status": "pending",
+    "currency": "EUR",
+    "pricing": {
+      "subtotal": 45.00,
+      "tax": 9.00,
+      "shipping": 4.99,
+      "discount": 0.00,
+      "total": 58.99
+    },
+    "items": [
+      {
+        "productId": "PROD-408",
+        "name": "Premium Soy Candle Set",
+        "sku": "CN-SOY-SET",
+        "quantity": 3,
+        "unitPrice": 15.00
+      }
+    ],
+    "shippingAddress": {
+      "fullName": "Jean-Pierre Dupont",
+      "street": "45 Rue du Faubourg Saint-Antoine",
+      "city": "Paris",
+      "state": "Île-de-France",
+      "postalCode": "75011",
+      "country": "FR"
+    },
+    "payment": {
+      "method": "paypal",
+      "provider": "PayPal",
+      "transactionId": "PAYID-MNS90123"
+    }
+  },
+  {
+    "orderId": "ORD-2026-8943",
+    "customerId": "CUST-7739",
+    "orderDate": "2026-06-20T18:45:12Z",
+    "status": "delivered",
+    "currency": "USD",
+    "pricing": {
+      "subtotal": 299.99,
+      "tax": 24.50,
+      "shipping": 15.00,
+      "discount": 50.00,
+      "total": 289.49
+    },
+    "items": [
+      {
+        "productId": "PROD-001",
+        "name": "Noise Cancelling Headphones",
+        "sku": "HP-NC-300",
+        "quantity": 1,
+        "unitPrice": 299.99
+      }
+    ],
+    "shippingAddress": {
+      "fullName": "Alex Morgan",
+      "street": "789 Pine Road",
+      "city": "Seattle",
+      "state": "WA",
+      "postalCode": "98101",
+      "country": "US"
+    },
+    "payment": {
+      "method": "apple_pay",
+      "provider": "Adyen",
+      "transactionId": "tx_99214041"
+    }
+  }
+]
