@@ -138,3 +138,18 @@ function openPoliticianDialog(politician) {
 
     dialog.showModal();
 }
+
+const politicianDialog = document.getElementById('politician-dialog')
+politicianDialog.onclick = (event) => {
+    const rect = politicianDialog.getBoundingClientRect()
+
+    const isClickOutside = (
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom
+    );
+
+    if (isClickOutside) politicianDialog.close();
+}
+document.getElementById('close-dialog').onclick = () => politicianDialog.close()
