@@ -3,6 +3,11 @@ import fs from 'fs/promises'
 import cors from 'cors'
 import { log, error } from 'console'
 
+import { fileURLToPath } from "url"
+import path from "path"
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const port = 3000
 
@@ -12,11 +17,11 @@ app.use(cors())
 
 app.get('/', async (_req, res) => {
     try {
-        const stringifyPoliticians = await fs.readFile('./db/politicians.json')
+        const stringifyPoliticians = await fs.readFile(`${__dirname}/db/politicians.json`)
         const politicians = JSON.parse(stringifyPoliticians)
         res.json(politicians)
-    } catch (error) {
-        error(error.message);
+    } catch (err) {
+        error(err.message);
         res.status(500).send("Internal Server Error")
     }
 })
@@ -24,12 +29,12 @@ app.get('/', async (_req, res) => {
 app.get('/politician/:id', async (req, res) => {
     try {
         const requestedId = req.params.id
-        const stringifyPoliticians = await fs.readFile('./db/politicians.json')
+        const stringifyPoliticians = await fs.readFile(`${__dirname}/db/politicians.json`)
         const politicians = JSON.parse(stringifyPoliticians)
         const requestedPolitian = politicians.find((politician) => politician.id == requestedId)
         if (requestedPolitian) res.json(requestedPolitian)
         else res.status(404).send(`Poltician not found with id: ${requestedId}`)
-    } catch (error) {
+    } catch (err) {
         res.status(500).send("Internal Server Error")
     }
 })
@@ -42,7 +47,7 @@ app.post('/bulk-politicians', async (req, res) => {
         });
         log(req.body);
 
-        const stringifyPoliticians = await fs.readFile('./db/politicians.json')
+        const stringifyPoliticians = await fs.readFile(`${__dirname}/db/politicians.json`)
         const politicians = JSON.parse(stringifyPoliticians)
         log({
             message: "successfully fetched politicians from the db",
@@ -54,9 +59,9 @@ app.post('/bulk-politicians', async (req, res) => {
         const response = politicians.filter((user) => politciansFilter.includes((user.id)))
         if (response.length > 0) res.json(response)
         else res.status(404).send(`can't find Polticians with ids: ${politciansFilter}`)
-    } catch (error) {
+    } catch (err) {
         error({
-            message: error.message,
+            message: err.message,
             endpoint: "/bulk-politicians"
         });
         res.status(500).send("Internal Server Error")
@@ -70,7 +75,7 @@ app.get('/houses', async (req, res) => {
             endpoint: "/houses"
         });
 
-        const stringifyHouses = await fs.readFile('./db/houses.json')
+        const stringifyHouses = await fs.readFile(`${__dirname}/db/houses.json`)
         const houses = JSON.parse(stringifyHouses)
         console.log({
             message: "Successfully fetched houses from the db",
@@ -78,9 +83,9 @@ app.get('/houses', async (req, res) => {
             data: houses
         });
         res.json(houses)
-    } catch (error) {
+    } catch (err) {
         error({
-            message: error.message,
+            message: err.message,
             endpoint: "/houses"
         });
         res.status(500).send("Internal Server Error")
@@ -96,7 +101,7 @@ app.put('/role/:id', async (req, res) => {
             roleId
         });
 
-        const stringifyRoles = await fs.readFile('./db/roles.json')
+        const stringifyRoles = await fs.readFile(`${__dirname}/db/roles.json`)
         const roles = JSON.parse(stringifyRoles)
         log({
             message: "Successfully fetched role from the db",
@@ -120,11 +125,11 @@ app.put('/role/:id', async (req, res) => {
             } : r
         )
 
-        await fs.writeFile('./db/roles.json', JSON.stringify(modifiedRoles, null, 4))
+        await fs.writeFile(`${__dirname}/db/roles.json`, JSON.stringify(modifiedRoles, null, 4))
         res.json(modifiedRoles)
-    } catch (error) {
+    } catch (err) {
         error({
-            message: error.message,
+            message: err.message,
             endpoint: "/role/:id"
         });
         res.status(500).send("Internal Server Error")
@@ -140,7 +145,7 @@ app.patch('/role/:id', async (req, res) => {
             roleId
         });
 
-        const stringifyRoles = await fs.readFile('./db/roles.json')
+        const stringifyRoles = await fs.readFile(`${__dirname}/db/roles.json`)
         const roles = JSON.parse(stringifyRoles)
         log({
             message: "Successfully fetched role from the db",
@@ -164,11 +169,11 @@ app.patch('/role/:id', async (req, res) => {
             } : r
         )
 
-        await fs.writeFile('./db/roles.json', JSON.stringify(modifiedRoles, null, 4))
+        await fs.writeFile(`${__dirname}/db/roles.json`, JSON.stringify(modifiedRoles, null, 4))
         res.json(modifiedRoles)
-    } catch (error) {
+    } catch (err) {
         error({
-            message: error.message,
+            message: err.message,
             endpoint: "/role/:id"
         });
         res.status(500).send("Internal Server Error")
@@ -184,7 +189,7 @@ app.delete('/role/:id', async (req, res) => {
             roleId
         });
 
-        const stringifyRoles = await fs.readFile('./db/roles.json')
+        const stringifyRoles = await fs.readFile(`${__dirname}/db/roles.json`)
         const roles = JSON.parse(stringifyRoles)
         log({
             message: "Successfully fetched role from the db",
@@ -203,11 +208,11 @@ app.delete('/role/:id', async (req, res) => {
 
         const modifiedRoles = roles.filter(r => r.id !== role.id)
 
-        await fs.writeFile('./db/roles.json', JSON.stringify(modifiedRoles, null, 4))
+        await fs.writeFile(`${__dirname}/db/roles.json`, JSON.stringify(modifiedRoles, null, 4))
         res.json(modifiedRoles)
-    } catch (error) {
+    } catch (err) {
         error({
-            message: error.message,
+            message: err.message,
             endpoint: "/role/:id"
         });
         res.status(500).send("Internal Server Error")
@@ -222,7 +227,7 @@ app.post('/bulk-roles', async (req, res) => {
         });
         log(req.body);
 
-        const stringifyRoles = await fs.readFile('./db/roles.json')
+        const stringifyRoles = await fs.readFile(`${__dirname}/db/roles.json`)
         const roles = JSON.parse(stringifyRoles)
         log({
             message: "successfully fetched roles from the db",
@@ -234,9 +239,9 @@ app.post('/bulk-roles', async (req, res) => {
         const response = roles.filter((role) => rolesFilter.includes((role.id)))
         if (response.length > 0) res.json(response)
         else res.status(404).send(`can't find Polticians with ids: ${rolesFilter}`)
-    } catch (error) {
+    } catch (err) {
         error({
-            message: error.message,
+            message: err.message,
             endpoint: "/bulk-roles"
         });
         res.status(500).send("Internal Server Error")
@@ -249,16 +254,16 @@ app.get('/all-roles', async (_req, res) => {
             message: "Trying to fetch roles from the db",
             endpoint: "/all-roles"
         })
-        const stringifyRoles = await fs.readFile('/db/roles.json')
+        const stringifyRoles = await fs.readFile(`${__dirname}/db/roles.json`)
         const roles = JSON.parse(stringifyRoles)
         log({
             message: "Successfully fetched roles from the db",
             endpoint: "/all-roles"
         })
         res.json(roles)
-    } catch (error) {
+    } catch (err) {
         log({
-            message: error.message,
+            message: err.message,
             endpoint: "/all-roles"
         })
         res.status(500).send("Internal Server Error")
