@@ -1,4 +1,4 @@
-document.getElementById('btn').onclick = (event) => {
+document.getElementById('btn').onclick = (_event) => {
     console.log({
         message: 'Trying to get houses from server'
     })
@@ -10,13 +10,12 @@ document.getElementById('btn').onclick = (event) => {
             message: "Successfully got houses from server",
             data: houses
         })
-        houses.forEach(house => {
-            const rolesToFetch = []
-
+        const housePromises = houses.map(house => {
             console.log({
                 message: `Trying to get politicians for '${house.name}' from server`
             })
-            fetchJSON('http://localhost:3000/bulk-politicians', {
+
+            return fetchJSON('http://localhost:3000/bulk-politicians', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(house.politicians)
@@ -25,19 +24,13 @@ document.getElementById('btn').onclick = (event) => {
                     message: `Successfully got politicians for '${house.name}' from server`,
                     data: politicians
                 })
-                console.log({
-                    message: "pre house map",
-                    house
-                });
 
-                politicians.forEach(politician => {
-                    if (!rolesToFetch.includes(politician.role)) rolesToFetch.push(politician.role)
-                })
-
+                const rolesToFetch = [...new Set(politicians.map(p => p.role))]
                 console.log({
                     message: `Trying to get roles: ${rolesToFetch}, from server`
                 })
-                fetchJSON('http://localhost:3000/bulk-roles', {
+
+                return fetchJSON('http://localhost:3000/bulk-roles', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(rolesToFetch)
@@ -47,34 +40,41 @@ document.getElementById('btn').onclick = (event) => {
                         data: roles
                     })
 
-                    const finaData = houses.map(house => {
-                        return {
-                            name: house.name,
-                            politicians: politicians.map(politician => {
-                                return {
-                                    ...politician,
-                                    role: roles.find(role => role.id === politician.role)
-                                }
-                            })
-                        }
-                    })
 
-                    console.log({
-                        message: "Successfully mapped all data for houses dashboard",
-                        data: finaData
-                    });
-
-
-                    renderGrid(finaData)
+                    return {
+                        name: house.name,
+                        politicians: politicians.map(politician => {
+                            return {
+                                ...politician,
+                                role: roles.find(role => role.id === politician.role)
+                            }
+                        })
+                    }
                 })
             })
         });
+
+        console.log({
+            message: "Mapped all houses promises",
+            housePromises
+        });
+
+
+        Promise.all(housePromises)
+            .then(finalData => {
+                console.log({
+                    message: "Successfully mapped all data for houses dashboard",
+                    data: finalData
+                });
+
+                renderGrid(finalData)
+            })
     })
 }
 
 // helpers
 function fetchJSON(url, request, callback) {
-    fetch(url, request)
+    return fetch(url, request)
         .then(response => response.json())
         .then(data => callback(data))
         .catch(error => console.error({
