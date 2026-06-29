@@ -8,6 +8,7 @@ import path from "path"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+const dbPath = path.join(__dirname, '../db')
 
 const port = 3000
 
@@ -17,7 +18,7 @@ app.use(cors())
 
 app.get('/', async (_req, res) => {
     try {
-        const stringifyPoliticians = await fs.readFile(`${__dirname}/db/politicians.json`)
+        const stringifyPoliticians = await fs.readFile(`${dbPath}/politicians.json`)
         const politicians = JSON.parse(stringifyPoliticians)
         res.json(politicians)
     } catch (err) {
@@ -29,7 +30,7 @@ app.get('/', async (_req, res) => {
 app.get('/politician/:id', async (req, res) => {
     try {
         const requestedId = req.params.id
-        const stringifyPoliticians = await fs.readFile(`${__dirname}/db/politicians.json`)
+        const stringifyPoliticians = await fs.readFile(`${dbPath}/politicians.json`)
         const politicians = JSON.parse(stringifyPoliticians)
         const requestedPolitian = politicians.find((politician) => politician.id == requestedId)
         if (requestedPolitian) res.json(requestedPolitian)
@@ -47,7 +48,7 @@ app.post('/bulk-politicians', async (req, res) => {
         });
         log(req.body);
 
-        const stringifyPoliticians = await fs.readFile(`${__dirname}/db/politicians.json`)
+        const stringifyPoliticians = await fs.readFile(`${dbPath}/politicians.json`)
         const politicians = JSON.parse(stringifyPoliticians)
         log({
             message: "successfully fetched politicians from the db",
@@ -75,7 +76,7 @@ app.get('/houses', async (req, res) => {
             endpoint: "/houses"
         });
 
-        const stringifyHouses = await fs.readFile(`${__dirname}/db/houses.json`)
+        const stringifyHouses = await fs.readFile(`${dbPath}/houses.json`)
         const houses = JSON.parse(stringifyHouses)
         console.log({
             message: "Successfully fetched houses from the db",
@@ -101,7 +102,7 @@ app.put('/role/:id', async (req, res) => {
             roleId
         });
 
-        const stringifyRoles = await fs.readFile(`${__dirname}/db/roles.json`)
+        const stringifyRoles = await fs.readFile(`${dbPath}/roles.json`)
         const roles = JSON.parse(stringifyRoles)
         log({
             message: "Successfully fetched role from the db",
@@ -125,7 +126,7 @@ app.put('/role/:id', async (req, res) => {
             } : r
         )
 
-        await fs.writeFile(`${__dirname}/db/roles.json`, JSON.stringify(modifiedRoles, null, 4))
+        await fs.writeFile(`${dbPath}/roles.json`, JSON.stringify(modifiedRoles, null, 4))
         res.json(modifiedRoles)
     } catch (err) {
         error({
@@ -145,7 +146,7 @@ app.patch('/role/:id', async (req, res) => {
             roleId
         });
 
-        const stringifyRoles = await fs.readFile(`${__dirname}/db/roles.json`)
+        const stringifyRoles = await fs.readFile(`${dbPath}/roles.json`)
         const roles = JSON.parse(stringifyRoles)
         log({
             message: "Successfully fetched role from the db",
@@ -169,7 +170,7 @@ app.patch('/role/:id', async (req, res) => {
             } : r
         )
 
-        await fs.writeFile(`${__dirname}/db/roles.json`, JSON.stringify(modifiedRoles, null, 4))
+        await fs.writeFile(`${dbPath}/roles.json`, JSON.stringify(modifiedRoles, null, 4))
         res.json(modifiedRoles)
     } catch (err) {
         error({
@@ -189,7 +190,7 @@ app.delete('/role/:id', async (req, res) => {
             roleId
         });
 
-        const stringifyRoles = await fs.readFile(`${__dirname}/db/roles.json`)
+        const stringifyRoles = await fs.readFile(`${dbPath}/roles.json`)
         const roles = JSON.parse(stringifyRoles)
         log({
             message: "Successfully fetched role from the db",
@@ -208,7 +209,7 @@ app.delete('/role/:id', async (req, res) => {
 
         const modifiedRoles = roles.filter(r => r.id !== role.id)
 
-        await fs.writeFile(`${__dirname}/db/roles.json`, JSON.stringify(modifiedRoles, null, 4))
+        await fs.writeFile(`${dbPath}/roles.json`, JSON.stringify(modifiedRoles, null, 4))
         res.json(modifiedRoles)
     } catch (err) {
         error({
@@ -227,7 +228,7 @@ app.post('/bulk-roles', async (req, res) => {
         });
         log(req.body);
 
-        const stringifyRoles = await fs.readFile(`${__dirname}/db/roles.json`)
+        const stringifyRoles = await fs.readFile(`${dbPath}/roles.json`)
         const roles = JSON.parse(stringifyRoles)
         log({
             message: "successfully fetched roles from the db",
@@ -254,7 +255,7 @@ app.get('/all-roles', async (_req, res) => {
             message: "Trying to fetch roles from the db",
             endpoint: "/all-roles"
         })
-        const stringifyRoles = await fs.readFile(`${__dirname}/db/roles.json`)
+        const stringifyRoles = await fs.readFile(`${dbPath}/roles.json`)
         const roles = JSON.parse(stringifyRoles)
         log({
             message: "Successfully fetched roles from the db",
